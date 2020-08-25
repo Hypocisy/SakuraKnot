@@ -4,6 +4,10 @@
   <artifactId>Templateus</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <description>A Minecraft Bukkit Plugin Template</description>
+  <properties>
+    <maven.compiler.source>1.11</maven.compiler.source>
+    <maven.compiler.target>1.11</maven.compiler.target>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
   </build>
