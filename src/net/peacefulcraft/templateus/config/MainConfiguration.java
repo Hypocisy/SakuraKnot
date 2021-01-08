@@ -3,7 +3,7 @@ package net.peacefulcraft.templateus.config;
 public class MainConfiguration extends Configuration {
 
 	public MainConfiguration() {
-		super("config", false);
+		super("config.yml", "config.yml");
 
 		this.loadValues();
 	}

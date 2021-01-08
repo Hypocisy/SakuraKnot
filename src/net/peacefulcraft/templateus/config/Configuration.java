@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,6 +13,7 @@ import net.peacefulcraft.templateus.Templateus;
 
 public abstract class Configuration {
 
+	private String resourceName;
 	protected String configName;
 		public String getConfigName() { return this.configName; }
 
@@ -24,25 +24,26 @@ public abstract class Configuration {
 
 	public Configuration(String configName) {
 		this.configName = configName;
-		this.createDefaultConfiguration(false);
+		this.createDefaultConfiguration(true);
 		this.loadConfiguration();
 	}
 
-	public Configuration(String configName, Boolean empty) {
+	public Configuration(String resourceName, String configName) {
+		this.resourceName = resourceName;
 		this.configName = configName;
-		this.createDefaultConfiguration(empty);
+		this.createDefaultConfiguration(false);
 		this.loadConfiguration();
 	}
 
 	protected void createDefaultConfiguration(Boolean empty) {
 		try {
-			this.configFile = new File(Templateus._this().getDataFolder(), this.configName + ".yml");
+			this.configFile = new File(Templateus._this().getDataFolder(), this.configName);
 			if (!configFile.exists()) {
-				configFile.getParentFile().mkdir();
+				configFile.getParentFile().mkdirs();
 				if (empty) {
 					this.configFile.createNewFile();
 				} else {
-					InputStream in = getClass().getClassLoader().getResourceAsStream("config.yml");
+					InputStream in = getClass().getClassLoader().getResourceAsStream(this.resourceName);
 					OutputStream out = new FileOutputStream(this.configFile);
 					byte[] copyBuffer = new byte[1024];
 					int read;
@@ -53,7 +54,7 @@ public abstract class Configuration {
 					in.close();
 				}
 			} else {
-				Templateus._this().logNotice("Found existing file at " + this.configName + ".yml - not creating a new one");
+				Templateus._this().logNotice("Found existing file at " + this.configName + " - not creating a new one");
 			}
 		} catch (IOException e) {
 			Templateus._this().logSevere("Error initializing config file " + this.configName);
@@ -62,15 +63,15 @@ public abstract class Configuration {
 	}
 
 	protected void loadConfiguration() {
-		config = YamlConfiguration.loadConfiguration(new File(Templateus._this().getDataFolder(), this.configName + ".yml"));
+		config = YamlConfiguration.loadConfiguration(new File(Templateus._this().getDataFolder(), this.configName));
 	}
 
 	public void saveConfiguration() {
 		try {
 			this.config.save(this.configFile);
 		  } catch (IOException e) {
-			Templateus._this().logSevere("Unable to save configuration file.");
 			e.printStackTrace();
+			Templateus._this().logSevere("Unable to save configuration file.");
 		  }
 	}
 }
