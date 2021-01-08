@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.md_5.bungee.api.ChatColor;
 import net.peacefulcraft.templateus.commands.ExampleCommand;
-import net.peacefulcraft.templateus.config.Configuration;
+import net.peacefulcraft.templateus.config.MainConfiguration;
 import net.peacefulcraft.templateus.listeners.PlayerJoinListener;
 public class Templateus extends JavaPlugin {
   
@@ -15,8 +15,8 @@ public class Templateus extends JavaPlugin {
   private static Templateus _this;
     public static Templateus _this() { return _this; }
 
-  private static Configuration configuration;
-    public static Configuration getConfiguration() { return configuration; }
+  private static MainConfiguration configuration;
+    public static MainConfiguration getConfiguration() { return configuration; }
 
   /**
    * Called when Bukkit server enables the plguin
@@ -24,9 +24,8 @@ public class Templateus extends JavaPlugin {
    */
   public void onEnable() {
     this._this = this;
-    // Save default config if one does not exist, load the configuration into memory
-    this.saveDefaultConfig();
-    configuration = new Configuration(this.getConfig());
+    // Save default config if one does not exist. Then load the configuration into memory
+    configuration = new MainConfiguration();
 
     this.setupCommands();
     this.setupEventListeners();
@@ -38,6 +37,10 @@ public class Templateus extends JavaPlugin {
     }
   }
   
+  public void logNotice(String message) {
+	this.getServer().getLogger().log(Level.INFO, message);
+  }
+
   public void logWarning(String message) {
     this.getServer().getLogger().log(Level.WARNING, message);
   }
