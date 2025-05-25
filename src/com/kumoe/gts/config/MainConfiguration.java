@@ -1,4 +1,4 @@
-package net.peacefulcraft.templateus.config;
+package com.kumoe.gts.config;
 
 public class MainConfiguration extends Configuration {
 
