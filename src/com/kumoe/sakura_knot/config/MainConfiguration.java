@@ -1,4 +1,4 @@
-package com.kumoe.gts.config;
+package com.kumoe.sakura_knot.config;
 
 public class MainConfiguration extends Configuration {
 

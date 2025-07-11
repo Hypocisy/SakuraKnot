@@ -1,4 +1,4 @@
-package com.kumoe.gts.config;
+package com.kumoe.sakura_knot.config;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.kumoe.gts.Gts;
+import com.kumoe.sakura_knot.SakuraKnot;
 
 public abstract class Configuration {
 
@@ -37,7 +37,7 @@ public abstract class Configuration {
 
 	protected void createDefaultConfiguration(Boolean empty) {
 		try {
-			this.configFile = new File(Gts._this().getDataFolder(), this.configName);
+			this.configFile = new File(SakuraKnot._this().getDataFolder(), this.configName);
 			if (!this.configFile.exists()) {
 				this.configFile.getParentFile().mkdirs();
 				if (empty) {
@@ -54,10 +54,10 @@ public abstract class Configuration {
 					in.close();
 				}
 			} else {
-				Gts._this().logNotice("Found existing file at " + this.configName + " - not creating a new one");
+				SakuraKnot._this().logNotice("Found existing file at " + this.configName + " - not creating a new one");
 			}
 		} catch (IOException e) {
-			Gts._this().logSevere("Error initializing config file " + this.configName);
+			SakuraKnot._this().logSevere("Error initializing config file " + this.configName);
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +71,7 @@ public abstract class Configuration {
 			this.config.save(this.configFile);
 		  } catch (IOException e) {
 			e.printStackTrace();
-			Gts._this().logSevere("Unable to save configuration file.");
+			SakuraKnot._this().logSevere("Unable to save configuration file.");
 		  }
 	}
 }

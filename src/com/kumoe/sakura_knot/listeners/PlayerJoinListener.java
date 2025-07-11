@@ -1,4 +1,4 @@
-package com.kumoe.gts.listeners;
+package com.kumoe.sakura_knot.listeners;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

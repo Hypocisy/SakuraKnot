@@ -2,10 +2,10 @@
 # Reference
 # https://bukkit.gamepedia.com/Plugin_YAML
 #
-name: Gts
-main: com.kumoe.gts.Gts
+name: SakuraKnot
+main: com.kumoe.sakura_knot.SakuraKnot
 version: 0.0.1
-api-version: 1.21.1
+api-version: 1.13
 website: https://www.peacefulcraft.net/
 depend: [ CMI ]
 softdepend: []

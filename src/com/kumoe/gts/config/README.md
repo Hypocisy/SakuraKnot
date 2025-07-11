@@ -1,1 +1,0 @@
-For documentation on the configuration file system, see [our wiki](https://github.com/peacefulcraft-network/Bukkit-Plugin-Template/wiki/Configuration-Files).

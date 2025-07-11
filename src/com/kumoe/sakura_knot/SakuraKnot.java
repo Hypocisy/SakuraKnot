@@ -1,9 +1,8 @@
-package com.kumoe.gts;
+package com.kumoe.sakura_knot;
 
 import com.Zrips.CMI.CMI;
-import com.kumoe.gts.commands.ExampleCommand;
-import com.kumoe.gts.config.MainConfiguration;
-import com.kumoe.gts.listeners.PlayerJoinListener;
+import com.kumoe.sakura_knot.config.MainConfiguration;
+import com.kumoe.sakura_knot.listeners.PlayerJoinListener;
 import net.md_5.bungee.api.ChatColor;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -13,17 +12,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.UUID;
 import java.util.logging.Level;
 
-public class Gts extends JavaPlugin {
+public class SakuraKnot extends JavaPlugin {
 	public static final String messagingPrefix = ChatColor.GREEN + "[" + ChatColor.BLUE + "PCN" + ChatColor.GREEN + "]" + ChatColor.RESET;
 	private static Economy econ;
-	private static Gts _this;
+	private static SakuraKnot _this;
 	private static MainConfiguration configuration;
 
-	public static Gts _this() {
+	public static SakuraKnot _this() {
 		return _this;
 	}
 
-	public static Gts getInstance() {
+	public static SakuraKnot getInstance() {
 		return _this();
 	}
 
@@ -36,15 +35,15 @@ public class Gts extends JavaPlugin {
 	}
 
 	public static void depositPlayer(UUID player, double price) {
-		Gts.getEcon().depositPlayer(Bukkit.getPlayer(player), price);
+		SakuraKnot.getEcon().depositPlayer(Bukkit.getPlayer(player), price);
 	}
 
 	public static void withdrawPlayer(UUID player, double price) {
-		Gts.getEcon().withdrawPlayer(Bukkit.getPlayer(player), price);
+		SakuraKnot.getEcon().withdrawPlayer(Bukkit.getPlayer(player), price);
 	}
 
 	public static double getBalance(UUID player) {
-		return Gts.getEcon().getBalance(Bukkit.getPlayer(player));
+		return SakuraKnot.getEcon().getBalance(Bukkit.getPlayer(player));
 	}
 
 	/**
@@ -91,9 +90,9 @@ public class Gts extends JavaPlugin {
 		this.getServer().getScheduler().cancelTasks(this);
 	}
 
-	private void setupCommands() {
-		this.getCommand("example").setExecutor(new ExampleCommand());
-	}
+//	private void setupCommands() {
+//		this.getCommand("example").setExecutor(new ExampleCommand());
+//	}
 
 	private void setupEventListeners() {
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
